@@ -29,5 +29,5 @@ pipeline:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
       - docker pull biniam/example-webserver:$DRONE_COMMIT_SHA
-      - docker tag <username>/example-webserver:$DRONE_COMMIT_SHA biniam/example-webserver:latest
+      - docker tag biniam/example-webserver:$DRONE_COMMIT_SHA biniam/example-webserver:latest
       - docker stack deploy -c ./docker-compose.yml example-webserver
