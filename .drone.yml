@@ -20,6 +20,6 @@ pipeline:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker login -u biniam -p $HUB_PASS
+      - docker login -u biniam -p $PASS
       - docker push biniam/example-webserver
       
