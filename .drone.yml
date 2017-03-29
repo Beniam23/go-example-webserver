@@ -34,4 +34,4 @@ pipeline:
     commands:
       - docker pull biniam/example-webserver:$DRONE_COMMIT_SHA
       - docker tag biniam/example-webserver:$DRONE_COMMIT_SHA biniam/example-webserver:production
-      - docker stack deploy -c ./docker-compose.yml example-webs
+      - docker stack deploy -c ./docker-compose.yml example-webserver
