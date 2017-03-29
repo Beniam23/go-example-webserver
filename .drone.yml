@@ -15,6 +15,7 @@ pipeline:
 
   push:
     image: docker
+    password: ${DOCKER_PASSWORD}
     environment:
       - PASS=${HUB_PASS}
     volumes:
