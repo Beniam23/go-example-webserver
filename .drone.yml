@@ -21,4 +21,4 @@ pipeline:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
       - docker login -u biniam -p $PASS
-      - docker push <username>/example-webserver
+      - docker push biniam/example-webserver
