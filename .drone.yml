@@ -22,3 +22,4 @@ pipeline:
     commands:
       - docker login -u biniam -p $HUB_PASS
       - docker push biniam/example-webserver
+      
