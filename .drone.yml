@@ -23,3 +23,10 @@ pipeline:
       - docker login -u biniam -p $PASS
       - docker push biniam/example-webserver
       
+  deploy:
+    image: docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - docker pull biniam/example-webserver
+      - docker stack deploy -c ./docker-compose.yml example-webs
