@@ -1,7 +1,7 @@
 pipeline:
   build:
     image: docker
-    volumes:
+    volume:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
       - docker build -t biniam/example-webserver .
@@ -12,3 +12,14 @@ pipeline:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
       - docker run biniam/example-webserver /test.sh
+
+  push:
+    image: docker
+    environment:
+      - PASS=${HUB_PASS}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - docker login -u biniam -p $PASS
+      - docker push <username>/example-webserver
+
