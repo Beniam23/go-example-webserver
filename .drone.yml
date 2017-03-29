@@ -6,3 +6,9 @@ pipeline:
     commands:
       - docker build -t biniam/example-webserver .
 
+  test:
+    image: docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - docker run biniam/example-webserver /test.sh
