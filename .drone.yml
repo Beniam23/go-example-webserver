@@ -4,14 +4,14 @@ pipeline:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker build -t biniam/example-webserver .
+      - docker build -t biniam/example-webserver:$DRONE_COMMIT_SHA .
 
   test:
     image: docker
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker run biniam/example-webserver /test.sh
+      - docker run biniam/example-webserver:$DRONE_COMMIT_SHA /test.sh
 
   push:
     image: docker
@@ -21,12 +21,13 @@ pipeline:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
       - docker login -u biniam -p $PASS
-      - docker push biniam/example-webserver
+      - docker push biniam/example-webserver:$DRONE_COMMIT_SHA
       
   deploy:
     image: docker
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker pull biniam/example-webserver
-      - docker stack deploy -c ./docker-compose.yml example-webs
+      - docker pull biniam/example-webserver:$DRONE_COMMIT_SHA
+      - docker tag <username>/example-webserver:$DRONE_COMMIT_SHA biniam/example-webserver:latest
+      - docker stack deploy -c ./docker-compose.yml example-webserver
