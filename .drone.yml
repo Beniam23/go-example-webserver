@@ -21,5 +21,5 @@ pipeline:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker login -u biniam -p $PASS
+      - docker login -u biniam -p $DOCKER_PASSWORD
       - docker push biniam/example-webserver
