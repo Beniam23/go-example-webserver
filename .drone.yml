@@ -30,4 +30,4 @@ pipeline:
     commands:
       - docker pull biniam/example-webserver:$DRONE_COMMIT_SHA
       - docker tag biniam/example-webserver:$DRONE_COMMIT_SHA biniam/example-webserver:latest
-      - docker stack deploy -c ./docker-compose.yml example-webserver
+      - docker stack deploy -c ./docker-compose.yml example-webs
